@@ -30,9 +30,10 @@ namespace ConsultAdmin.Entities
 
             public TimeSpan EndTime { get; set; }
 
-            public TimeSpan StartDate { get; set; }
+            public DateTime StartDate { get; set; }
 
-            public TimeSpan EndDate { get; set; }
+            public DateTime EndDate { get; set; }
+
             public TimeSpan LunchBreak { get; set; }
 
             public string Comments { get; set; }

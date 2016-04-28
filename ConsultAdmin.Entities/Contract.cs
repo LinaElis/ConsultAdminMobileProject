@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace ConsultAdmin.Entities
     {
         public int Id { get; set; }
 
+        public int EmployeeId { get; set; }
+
         public int ClientId { get; set; }
 
         public int ProjectId { get; set; }
@@ -18,7 +21,14 @@ namespace ConsultAdmin.Entities
 
         public DateTime EndDate { get; set; }
 
-        //Tidrapporten rapporteras på ContractName
         public string ContractName { get; set; }
+
+        public string ClientName { get; set; }
+
+        public string ProjectName { get; set; }
+
+        public string Description { get; set; }
+
+        public Collection<EmployeeContract> EmployeeContracts { get; set; }
     }
 }

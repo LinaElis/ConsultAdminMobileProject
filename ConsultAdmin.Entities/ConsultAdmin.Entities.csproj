@@ -36,7 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
-    <Compile Include="ClientContract.cs" />
     <Compile Include="ClientProject.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="Employee.cs" />

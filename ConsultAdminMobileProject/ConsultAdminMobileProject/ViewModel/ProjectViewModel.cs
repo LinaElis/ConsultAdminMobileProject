@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,15 @@ namespace ConsultAdminMobileProject.ViewModel
         private readonly ILogger _logger = new PCLLogger();
         private readonly EmployeeManager _employeeManager = new EmployeeManager();
         private readonly ClientProjectManager _clientProjectManager = new ClientProjectManager();
-        private TimeReport _timeReport = new TimeReport();
-
+        private readonly TimeReport _timeReport = new TimeReport();
+        private Contract _contract = new Contract();
 
         private string _clientName;
         private string _contractName;
-        private TimeSpan _endDate;
-        private TimeSpan _startDate;
+        private string _projectName;
+        private string _description;
+        private DateTime _endDate;
+        private DateTime _startDate;
         private int _clientIndex;
         private int _contractIndex;
         private int _employeeId;
@@ -35,6 +38,7 @@ namespace ConsultAdminMobileProject.ViewModel
         public int SelectedContractId { get; set; }
         public int TimeReportId { get; set; }
         public int ProjectId { get; set; }
+        public int ContractId { get; set; }
 
         //public static List<int> Id { get; set; }
         public static List<DateTime> StartDateList { get; set; }
@@ -111,7 +115,7 @@ namespace ConsultAdminMobileProject.ViewModel
             }
         }
 
-        public TimeSpan StartDate
+        public DateTime StartDate
         {
             get { return _startDate; }
             set
@@ -122,7 +126,7 @@ namespace ConsultAdminMobileProject.ViewModel
             }
         }
 
-        public TimeSpan EndDate
+        public DateTime EndDate
         {
             get { return _endDate; }
             set
@@ -132,6 +136,29 @@ namespace ConsultAdminMobileProject.ViewModel
                 SetPropertyField(nameof(EndDate), ref _endDate, value);
             }
         }
+
+        public string ProjectName
+        {
+            get { return _projectName; }
+            set
+            {
+                if (_projectName != value)
+                    EnableSaveButton = true;
+                SetPropertyField(nameof(ProjectName), ref _projectName, value);
+            }
+        }
+
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                if (_description != value)
+                    EnableSaveButton = true;
+                SetPropertyField(nameof(Description), ref _description, value);
+            }
+        }
+
 
         public void ClientIndexChanged(int index)
         {
@@ -224,40 +251,83 @@ namespace ConsultAdminMobileProject.ViewModel
         public async Task SaveProjects()
         {
             GetClientIdAndContractId();
-            TimeReportSaveAndEditValues();
-            await _clientProjectManager.SaveClientContract(_timeReport);
+            ContractSaveAndEditValues();
+            await _clientProjectManager.SaveContract(_contract);
         }
 
         public async Task EditProjects()
         {
             SelectedContractId = ContractIdList[ContractIndex];
-            _timeReport.Id = TimeReportId;
-            TimeReportSaveAndEditValues();
-            await _clientProjectManager.EditClientContract(_timeReport);
+            _contract.Id = ContractId;
+            ContractSaveAndEditValues();
+            await _clientProjectManager.EditContract(_contract);
         }
 
         public async Task DeleteProjects()
         {
-            _timeReport.Id = ProjectId;
-            _timeReport.EmployeeId = EmployeeId;
-            await _clientProjectManager.DeleteClientContract(_timeReport);
+            _contract.Id = ContractId;
+            _contract.EmployeeId = EmployeeId;
+            await _clientProjectManager.DeleteContract(_contract);
         }
 
-        public void TimeReportSaveAndEditValues()
+        public async Task GetContract()
+        {
+
+            var contractList = await _clientProjectManager.GetContract(EmployeeId, ContractId);
+            //_timeReport = timeReportList.FirstOrDefault<TimeReport>();
+            _contract = contractList.FirstOrDefault<Contract>();
+
+            if (_timeReport != null)
+            {
+                GetClientIdAndContractId();
+
+                if (DistinctClientIdList != null)
+                {
+                    for (int i = 0; i < DistinctClientIdList.Count; i++)
+                    {
+                        if (DistinctClientIdList[i] == _timeReport.ClientId)
+                        {
+                            ClientIndex = i;
+                            break;
+                        }
+                    }
+
+                    ClientIndexChanged(ClientIndex);
+
+                    for (int i = 0; i < ContractIdList.Count; i++)
+                    {
+                        if (ContractIdList[i] == _timeReport.ContractId)
+                        {
+                            ContractIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                StartDate = _contract.StartDate;
+                EndDate = _contract.EndDate;
+            }
+        }
+
+        public void ContractSaveAndEditValues()
         {
             var clientName = ClientList.FirstOrDefault(x => x.ClientId == SelectedClientId);
             string selectedClientname = (clientName != null) ? clientName.ClientName : "";
             var contractName = ClientList.FirstOrDefault(x => x.ContractId == SelectedContractId);
             string selectedContractName = (contractName != null) ? contractName.ContractName : "";
 
-            _timeReport.EmployeeId = CurrentUser.EmployeeId;
-            _timeReport.ClientId = SelectedClientId;
-            _timeReport.ClientName = selectedClientname;
-            _timeReport.ContractId = SelectedContractId;
-            _timeReport.ContractName = selectedContractName;
-            _timeReport.StartDate = StartDate;
-            _timeReport.EndDate = EndDate;
+            _contract.EmployeeId = CurrentUser.EmployeeId;
+            _contract.ClientId = SelectedClientId;
+            _contract.ProjectId = ProjectId;
+            _contract.ClientName = selectedClientname;
+            _contract.ContractName = ContractName;
+            _contract.ProjectName = ProjectName;
+            _contract.Description = Description;
+            _contract.ContractName = selectedContractName;
+            _contract.StartDate = StartDate;
+            _contract.EndDate = EndDate;
         }
+
         //public async Task GetClientContractToFillValues()
         //{
 

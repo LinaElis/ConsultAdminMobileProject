@@ -5,7 +5,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ConsultAdmin.Entities;
 using ConsultAdmin.Entities.ConsultAdmin.Model;
+using ConsultAdminMobileProject.Fake;
 using ConsultAdminMobileProject.Interface;
 using Newtonsoft.Json;
 using Xamarin;
@@ -16,13 +18,14 @@ namespace ConsultAdminMobileProject.Service
     {
         private readonly ILogger _logger = new PCLLogger();
 
-        public async Task<List<TimeReport>> GetClientContract(int employeeId, int timeReportId)
-        {
-            List<TimeReport> timeReport = new List<TimeReport>();
-            //Todo: Read the correct URL from config
-            string uri = $"http://consultadminwebserver.azurewebsites.net/api/employee/{employeeId}/timereports?&TimeReportId={timeReportId}";
 
-            var handle = Insights.TrackTime("Time_GetClientContract");
+        public async Task<List<Contract>> GetContract(int employeeId, int contractId)
+        {
+            List<Contract> contracts = new List<Contract>();
+            //Todo: Read the correct URL from config
+            string uri = $"http://consultadminwebserver.azurewebsites.net/api/Contract/id";
+
+            var handle = Insights.TrackTime("Time_GetContract");
             handle.Start();
 
             try
@@ -39,14 +42,14 @@ namespace ConsultAdminMobileProject.Service
                 string contents = await contentsTask.ConfigureAwait(false);
 
                 // Deserialize the JSON data into Contact
-                timeReport = JsonConvert.DeserializeObject<List<TimeReport>>(contents);
+                contracts = JsonConvert.DeserializeObject<List<Contract>>(contents);
             }
             catch (Exception ex)
             {
                 Dictionary<string, string> myDictionary = new Dictionary<string, string>
                 {
-                    {"Function", "EmployeeManager.GetClientContract"},
-                    {"Key", timeReportId.ToString()}
+                    {"Function", "ClientProjectManager.GetContract"},
+                    {"Key", contractId.ToString()}
             };
                 _logger.LoggError(ex, myDictionary, (Xamarin.Insights.Severity.Error));
             }
@@ -55,13 +58,13 @@ namespace ConsultAdminMobileProject.Service
                 // Stop the GetContact-timer
                 handle.Stop();
             }
-            return timeReport;
+            return contracts;
         }
 
-        public async Task SaveClientContract(TimeReport timeReport)
+        public async Task SaveContract(Contract contract)
         {
-            string uri = $"http://consultadminwebserver.azurewebsites.net/api/employee/{timeReport.EmployeeId}/timereports";
-            var handle = Insights.TrackTime("Time-SaveClientContract");
+            string uri = $"http://consultadminwebserver.azurewebsites.net/api/Contract";
+            var handle = Insights.TrackTime("Time-SaveContract");
             handle.Start();
 
             HttpClient httpClient = new HttpClient();
@@ -69,16 +72,16 @@ namespace ConsultAdminMobileProject.Service
 
             try
             {
-                var requestJSON = JsonConvert.SerializeObject(timeReport);
+                var requestJSON = JsonConvert.SerializeObject(contract);
                 await httpClient.PostAsync(uri,
                 new StringContent(requestJSON.ToString(), Encoding.UTF8, "application/json"));
 
-                _logger.LoggEvent("SaveClientContract", new Dictionary<string, string>()
+                _logger.LoggEvent("SaveContract", new Dictionary<string, string>()
                 {
-                    {"EmployeeId", timeReport.EmployeeId.ToString()},
-                    {"ClientId", timeReport.ClientId.ToString()},
-                    {"StartDate", timeReport.StartDate.ToString()},
-                    {"EndDate", timeReport.EndDate.ToString()}
+                    {"EmployeeId", contract.EmployeeId.ToString()},
+                    {"ClientId", contract.ClientId.ToString()},
+                    {"StartDate", contract.StartDate.ToString()},
+                    {"EndDate", contract.EndDate.ToString()}
 
                 });
 
@@ -86,46 +89,46 @@ namespace ConsultAdminMobileProject.Service
             }
             catch (Exception ex)
             {
-                _logger.LoggError(ex, new Dictionary<string, string>() { { "Function", "SaveClientContract" } }, Insights.Severity.Error);
+                _logger.LoggError(ex, new Dictionary<string, string>() { { "Function", "SaveContract" } }, Insights.Severity.Error);
             }
             return;
         }
 
-        public async Task EditClientContract(TimeReport timeReport)
+        public async Task EditContract(Contract contract)
         {
-            string uri = $"http://consultadminwebserver.azurewebsites.net/api/employee/{timeReport.EmployeeId}/timereports?id={timeReport.Id}";
+            string uri = $"http://consultadminwebserver.azurewebsites.net/api/Contract/id";
 
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             try
             {
-                var requestJSON = JsonConvert.SerializeObject(timeReport);
+                var requestJSON = JsonConvert.SerializeObject(contract);
                 var response = await httpClient.PutAsync(uri,
                 new StringContent(requestJSON.ToString(), Encoding.UTF8, "application/json"));
             }
             catch (Exception ex)
             {
-                _logger.LoggError(ex, new Dictionary<string, string>() { { "Function", "EditClientContract" } }, Insights.Severity.Error);
+                _logger.LoggError(ex, new Dictionary<string, string>() { { "Function", "EditContract" } }, Insights.Severity.Error);
             }
             return;
         }
 
-        public async Task DeleteClientContract(TimeReport timeReport)
+        public async Task DeleteContract(Contract contract)
         {
-            string uri = $"http://consultadminwebserver.azurewebsites.net/api/employee/{timeReport.EmployeeId}/timereports?id={timeReport.Id}";
+            string uri = $"http://consultadminwebserver.azurewebsites.net/api/Contract/id";
 
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             try
             {
-                var requestJSON = JsonConvert.SerializeObject(timeReport);
+                var requestJSON = JsonConvert.SerializeObject(contract);
                 await httpClient.DeleteAsync(uri);
             }
             catch (Exception ex)
             {
-                _logger.LoggError(ex, new Dictionary<string, string>() { { "Function", "DeleteClientContract" } }, Insights.Severity.Error);
+                _logger.LoggError(ex, new Dictionary<string, string>() { { "Function", "DeleteContract" } }, Insights.Severity.Error);
             }
             return;
         }
