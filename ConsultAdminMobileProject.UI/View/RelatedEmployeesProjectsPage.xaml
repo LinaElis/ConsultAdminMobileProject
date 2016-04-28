@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConsultAdminMobileProject.UI.View.RelatedEmployeesProjectsPage">
+  
+  <ContentPage.Content>
+    <ScrollView>
+      <ListView x:Name="EmployeeListViewItems" ItemsSource="{Binding Employees}" HasUnevenRows="True">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <Grid RowSpacing="0.6" Padding="20">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <!--<ColumnDefinition Width="4*"/>-->
+                  </Grid.ColumnDefinitions>
+                  
+                  <!--TODO: ändra gränssnittet så det ser ut som i wireframen!-->
+
+                  <!--TODO: Ändra binding så listvyn binder på en lista med emplyees kopplade till valt projekt.-->
+                  
+                  <!--<Label Grid.Row="0" Grid.Column="0"/>-->
+                  <!--<Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" IsVisible="{Binding HasImage}" Source="{Binding ImageURL}"/>-->
+                  <!--<Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasName}" Text="{Binding FullName}"/>
+                  <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasTitle}" Text="{Binding Title}" HorizontalOptions="EndAndExpand"/>
+                  <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding HasPhone}" Text="{Binding PrimaryPhoneNo}" />
+                  <Label Grid.Row="3" Grid.Column="0" IsVisible="{Binding HasEmail}" Text="{Binding PrimaryEmail}" />-->
+
+                  <!--<Label Grid.Row="4" Grid.Column="0"/>-->
+
+                </Grid>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

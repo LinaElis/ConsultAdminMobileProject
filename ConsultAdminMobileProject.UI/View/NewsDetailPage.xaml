@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConsultAdminMobileProject.UI.View.NewsDetailPage">
+  <ContentPage.Content>
+    <ScrollView>
+      <StackLayout Padding="5">
+        <Label Text="{Binding Subject}" FontSize="30" HorizontalOptions="Center" FontAttributes ="Bold"/>
+        <Label Text="{Binding PublishedDate, StringFormat='{}{0:yyyy/MM/dd}'}" HorizontalOptions="Center" FontSize="15" />
+        <Label Text="{Binding NewsBody}"/>
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

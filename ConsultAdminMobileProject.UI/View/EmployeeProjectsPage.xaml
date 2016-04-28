@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConsultAdminMobileProject.UI.View.EmployeeProjectsPage">
+
+  <!--<ContentPage.ToolbarItems>
+    <ToolbarItem Text="Edit Project" Clicked="EditClicked" Order="Primary" Priority="0">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="pencil32.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+    <ToolbarItem Clicked="AddClicked" Order="Primary" Priority="1">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="plus32.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>-->
+  
+  <!--<StackLayout BackgroundColor="White">
+
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Client name" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+      <Label Text="Start date" HorizontalOptions="End" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Project name" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+      <Label Text="End date" HorizontalOptions="End" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+    </StackLayout>
+    
+    <ListView x:Name="ProjectsList" HasUnevenRows="True">
+      --><!--ItemsSource="{Binding EmployeeProjectList}"--><!--
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View >
+              <Grid Padding="10, 10, 10, 10" BackgroundColor="#e6e6e6">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" BindingContext="{Binding ClientName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="Black" />
+                <Label Grid.Row="0" Grid.Column="1" BindingContext="{Binding StartDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+
+                <Label Grid.Row="1" Grid.Column="0" BindingContext="{Binding ProjectName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="Black" />
+                <Label Grid.Row="1" Grid.Column="1" BindingContext="{Binding EndDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+              </Grid>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <Button x:Name="TabbedPage" Text="To tabbed page" Clicked="TabbedPage_OnClicked" />
+    <Button x:Name="ProjectPage" Text="To project page from menu" Clicked="ProjectPage_OnClicked" />
+  
+  </StackLayout>-->
+
+
+  <ContentPage.Content>
+    <ScrollView>
+      <Grid Padding="10" BackgroundColor="White">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Text="Client name" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+        <Label Grid.Row="0" Grid.Column="2" Text="Start date" HorizontalOptions="End" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+
+        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="Start" Source="@drawable/pencil32" IsEnabled="{Binding Myself}" WidthRequest="25" HeightRequest="25" VerticalOptions="CenterAndExpand">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="EditTapped" />
+          </Image.GestureRecognizers>
+        </Image>
+        <!--TODO: Propertyn Myself -> om vald employee == inloggat id syns ikonerna, annars disabla.-->
+        <!--Lägg ovan ev.. CommandParameter="{Binding .}"-->
+        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End" Source="@drawable/plus32" IsEnabled="{Binding Myself}" WidthRequest="25" HeightRequest="25" VerticalOptions="CenterAndExpand">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="AddTapped" />
+          </Image.GestureRecognizers>
+        </Image>
+        <!--Lägg ovan ev.. CommandParameter="{Binding .}"-->
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Project name" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+        <Label Grid.Row="1" Grid.Column="2" Text="End date" HorizontalOptions="End" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="Black" />
+
+        <ListView
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            x:Name="ProjectsList"
+            HasUnevenRows="True">
+          <!--ItemsSource="{Binding EmployeeProjectList}"-->
+          <ListView.ItemTemplate>
+            <DataTemplate >
+              <ViewCell >
+                <ViewCell.View >
+                  <Grid Padding="10" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" BindingContext="{Binding ClientName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="Black" />
+                    <Label Grid.Row="0" Grid.Column="1" BindingContext="{Binding StartDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+
+                    <Label Grid.Row="1" Grid.Column="0" BindingContext="{Binding ContractName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="Black" />
+                    <Label Grid.Row="1" Grid.Column="1" BindingContext="{Binding EndDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+
+                    <!--TODO: Här ska vald employees projekt listas upp!-->
+
+                  </Grid>
+                </ViewCell.View>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="5" Grid.Column="0" x:Name="TabbedPage" Text="To tabbed page" Clicked="TabbedPage_OnClicked" />
+        <Button Grid.Row="5" Grid.Column="2" x:Name="ProjectPage" Text="To project page from menu" Clicked="ProjectPage_OnClicked" />
+      </Grid>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

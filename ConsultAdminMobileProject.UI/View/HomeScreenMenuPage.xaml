@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConsultAdminMobileProject.UI.View.HomeScreenMenuPage"
+             Icon="ic_menu_white_48dp.png"
+             Title="Master"            
+             BackgroundColor="#e6e6e6"
+             Padding="10, 10, 10, 10">          
+  <ContentPage.Content>
+    <StackLayout>
+      <Button x:Name="MenuHome" Image="home32.png" Text="   Home" Clicked="Home_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />
+      <Button x:Name="MenuEmployees" Image="user32.png" Text="   Employees" Clicked="MenuEmployees_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />
+      <Button x:Name="MenuProjects" Image="bag32.png" Text="   Projects" Clicked="MenuProjects_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />
+      <!--<Button x:Name="MenuLocations" Image="star32.png" Text="   Locations" Clicked="MenuLocations_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />
+      <Button x:Name="MenuTimeReports" Image="clock32.png" Text="   Time Reports" Clicked="MenuTimeReports_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />
+      <Button x:Name="MenuSettings" Image="spanner32.png" Text="   Settings" Clicked="MenuSettings_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />-->
+      <Button x:Name="MenuLogout" Image="stop32.png" Text="   Close (logout)" Clicked="MenuLogout_OnClicked" BackgroundColor="Transparent" TextColor="Black" FontSize="20" HorizontalOptions="Start" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

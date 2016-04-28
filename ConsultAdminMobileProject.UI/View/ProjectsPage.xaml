@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConsultAdminMobileProject.UI.View.ProjectsPage">
+
+  <ContentPage.Content>
+    <ScrollView>
+      <ListView x:Name="ProjectsListViewItems" 
+                ItemsSource="{Binding EmployeeContractList}" 
+                ItemTapped="ProjectsListViewItems_OnItemTapped" 
+                HasUnevenRows="True">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <Grid RowSpacing="0.6" Padding="20">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <!--<ColumnDefinition Width="4*"/>-->
+                  </Grid.ColumnDefinitions>
+
+                  <!--<Label Grid.Row="0" Grid.Column="0"/>-->
+                  <!--<Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" IsVisible="{Binding HasImage}" Source="{Binding ImageURL}"/>-->
+                  <!--<Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasName}" Text="{Binding FullName}"/>
+                  <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasTitle}" Text="{Binding Title}" HorizontalOptions="EndAndExpand"/>
+                  <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding HasPhone}" Text="{Binding PrimaryPhoneNo}" />
+                  <Label Grid.Row="3" Grid.Column="0" IsVisible="{Binding HasEmail}" Text="{Binding PrimaryEmail}" />-->
+
+                  <!--<Label Grid.Row="4" Grid.Column="0"/>-->
+
+                </Grid>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </ScrollView>
+  </ContentPage.Content>
+  
+  
+  <!--<ContentPage.Content>
+    <ScrollView>
+      <Grid Padding="10">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Text="Projects" HorizontalOptions="Center" />
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BindingContext="{Binding Projects}" Text="Här listas alla project, ska gå att klicka på -> vidare till tabbedPage." />
+        <Button Grid.Row="2" Grid.Column="1" x:Name="TabbedPage" Text="Tabbed page" Clicked="TabbedPage_OnClicked" />
+      </Grid>
+    </ScrollView>
+  </ContentPage.Content>-->
+  
+</ContentPage>

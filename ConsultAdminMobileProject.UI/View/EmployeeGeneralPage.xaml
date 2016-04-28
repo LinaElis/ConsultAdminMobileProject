@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ConsultAdminMobileProject.UI.View.EmployeeGeneralPage">
+  <ContentPage.Content>
+    <!--<ScrollView>-->
+    <!--<Image x:Name="EmpImage" IsVisible="{Binding }" HorizontalOptions="Center"/>-->
+
+    <Grid RowSpacing="0.2" Padding="10">
+      <Grid.RowDefinitions >
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="3*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <Label Grid.Row="0" Grid.Column="1"  Text="{Binding FullName}" HorizontalOptions="Center" FontSize="20"/>
+      <Label Grid.Row="1" Grid.Column="1" Text="{Binding LocationName}" HorizontalOptions="Center" FontSize="17"/>
+      <Label Grid.Row="2" Grid.Column="1"/>
+
+      <Label Grid.Row="3" Grid.Column="0" IsVisible="{Binding HasPrimaryEmail}" Text="Mail"/>
+      <Label Grid.Row="3" Grid.Column="1" IsVisible="{Binding HasPrimaryEmail}" Text="{Binding PrimaryEmail}" />
+      <Image Grid.Row="3" Grid.Column="2" Source="@drawable/ic_email_white_18dp" IsVisible="{Binding HasPrimaryEmail}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="{Binding PrimaryEmail}"/>
+        </Image.GestureRecognizers>
+      </Image>
+
+      <!--<Label Grid.Row="3" Grid.Column="0" IsVisible="{Binding HasAdditionalEmail}" Text="Mail"/>-->
+      <Label Grid.Row="4" Grid.Column="1" IsVisible="{Binding HasAdditionalEmail}" Text="{Binding AdditionalEmail}"/>
+      <Image Grid.Row="4" Grid.Column="2" Source="@drawable/ic_email_white_18dp" IsVisible="{Binding HasAdditionalEmail}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="{Binding AdditionalEmail}"/>
+        </Image.GestureRecognizers>
+      </Image>
+
+      <Label Grid.Row="5" Grid.Column="0" IsVisible="{Binding HasAnyPhone}" Text="Phone"/>
+      <Label Grid.Row="5" Grid.Column="1" IsVisible="{Binding HasPrimaryPhone}" Text="{Binding PrimaryPhone}"/>
+      <Image Grid.Row="5" Grid.Column="2" Source="@drawable/ic_call_white_18dp" IsVisible="{Binding HasPrimaryPhone}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="{Binding PrimaryPhone}"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Label Grid.Row="6" Grid.Column="1" IsVisible="{Binding HasHomePhone}" Text="{Binding HomePhone}"/>
+      <Image Grid.Row="6" Grid.Column="2" Source="@drawable/ic_call_white_18dp" IsVisible="{Binding HasHomePhone}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="{Binding HomePhone}"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Label Grid.Row="7" Grid.Column="1" IsVisible="{Binding HasOfficePhone}" Text="{Binding OfficePhone}"/>
+      <Image Grid.Row="7" Grid.Column="2" Source="@drawable/ic_call_white_18dp" IsVisible="{Binding HasOfficePhone}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="{Binding OfficePhone}"/>
+        </Image.GestureRecognizers>
+      </Image>
+
+      <!--<Label Grid.Row="6" Grid.Column="0" Text="Skype"/>-->
+      <!--<Label Grid.Row="6" Grid.Column="1" Text="{Binding }"/>-->
+      <!--<Image Grid.Row="6" Grid.Column="2" x:Name="EmpSkypeIcon" Source="SkypeIcon"/>-->
+
+      <Label Grid.Row="8" Grid.Column="0" IsVisible="{Binding HasHomeAddress}" Text="Address"/>
+      <Label Grid.Row="8" Grid.Column="1" IsVisible="{Binding HasHomeAddress}" Grid.RowSpan="2" Text="{Binding HomeAddress}" />
+      <Image Grid.Row="8" Grid.Column="2" Source="@drawable/ic_location_on_white_18dp" IsVisible="{Binding HasHomeAddress}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Tapped="HomeAddressTapped"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Label Grid.Row="9" Grid.Column="0" IsVisible="{Binding HasHomeAddress}" Text="(Home)"/>
+
+      <Label Grid.Row="10" Grid.Column="0" IsVisible="{Binding HasWorkAddress}" Text="Address"/>
+      <Label Grid.Row="10" Grid.Column="1" IsVisible="{Binding HasWorkAddress}" Grid.RowSpan="2" Text="{Binding WorkAddress}" />
+      <Image Grid.Row="10" Grid.Column="2" Source="@drawable/ic_location_on_white_18dp" IsVisible="{Binding HasWorkAddress}" WidthRequest="25" HeightRequest="25">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Tapped="WorkAddressTapped"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <Label Grid.Row="11" Grid.Column="0" IsVisible="{Binding HasWorkAddress}" Text="(Office)"/>
+
+    </Grid>
+
+    <!--</ScrollView>-->
+
+  </ContentPage.Content>
+</ContentPage>

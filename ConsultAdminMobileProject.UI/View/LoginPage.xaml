@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             x:Class="ConsultAdminMobileProject.UI.View.LoginPage">
+
+  <ContentPage.Content>
+    <StackLayout>
+      <Grid Padding="20, 20, 20, 20" VerticalOptions="CenterAndExpand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="2*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="1" Source="conevo_app_icon_192" Aspect="AspectFit"/>
+        <Label Grid.Row="2" Grid.Column="0" Text="Username"/>
+        <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center"
+               x:Name="EntryUsername"
+               TextChanged="EntryInput_OnTextChanged"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="Password"/>
+        <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center"
+               x:Name="EntryPassword"
+               IsPassword="True"
+               TextChanged="EntryInput_OnTextChanged"/>
+        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center"
+               Text="{Binding LoginMessage}"/>
+        <Button Grid.Row="7" Grid.Column="1"
+                x:Name="LoginButton"
+                Text="Login"
+                Clicked="Login_OnClicked"/>
+
+        <controls:CheckBox Grid.Row="8" Grid.Column="1"
+                DefaultText="Remember me"
+                x:Name="CBRemember"
+                Checked="True "
+                CheckedChanged="Cb_CheckedChanged"/>
+        <Label Grid.Row="9" Grid.Column="1" x:Name="LblChecked" IsEnabled="False"/>
+      </Grid>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
