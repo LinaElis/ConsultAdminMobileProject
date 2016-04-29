@@ -16,6 +16,9 @@ namespace ConsultAdminMobileProject.UI.View
         private readonly ProjectViewModel _projectViewModel = new ProjectViewModel();
 
         private readonly ILogger _logger = new PCLLogger();
+        private List<int> startDate = new List<int>();
+        private List<string> endDate = new List<string>();
+
         public EmployeeProjectsEditPage(ProjectViewModel projectViewModel)
         {
             _logger.LoggText("EmployeeProjectsEditPage");
@@ -24,7 +27,7 @@ namespace ConsultAdminMobileProject.UI.View
 
             _projectViewModel = projectViewModel;
 
-            LoadClientNameList();
+            //LoadClientNameList();
 
 
             if (_projectViewModel.ClientNameList != null)
@@ -98,6 +101,17 @@ namespace ConsultAdminMobileProject.UI.View
                 }
             };
         }
+
+        //private void SetDatePicker()
+        //{
+        //    DateTime inspected_at = DateTime.Now;
+
+        //    int year = inspected_at.Year;
+        //    int month = inspected_at.Month;
+        //    int day = inspected_at.Day;
+
+        //    StartDate.
+        //}
 
         private void DeleteField(object sender, EventArgs e)
         {

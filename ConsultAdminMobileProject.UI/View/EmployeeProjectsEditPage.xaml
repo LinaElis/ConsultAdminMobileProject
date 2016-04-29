@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              x:Class="ConsultAdminMobileProject.UI.View.EmployeeProjectsEditPage">
 
   <ContentPage.Content>
@@ -51,11 +52,42 @@
           </Grid.ColumnDefinitions>
 
           <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Start date" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" />
-          <DatePicker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="StartDate" Date="{Binding StartDate}" HorizontalOptions="Center" BackgroundColor="#666666" />
+          <DatePicker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="StartDate" Date="{x:Static sys:DateTime.Now}" HorizontalOptions="Center" BackgroundColor="#666666">
+            <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+            <DatePicker.MinimumDate>
+              <sys:DateTime x:FactoryMethod="Parse">
+                <x:Arguments>
+                  <x:String>Jan 1 2016</x:String>
+                </x:Arguments>
+              </sys:DateTime>
+            </DatePicker.MinimumDate>
+            <DatePicker.MaximumDate>
+              <sys:DateTime x:FactoryMethod="Parse">
+                <x:Arguments>
+                  <x:String>Dec 31 2017</x:String>
+                </x:Arguments>
+              </sys:DateTime>
+            </DatePicker.MaximumDate>
+          </DatePicker>
 
           <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="End date" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" />
-          <DatePicker Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="EndDate" Date="{Binding EndDate}" HorizontalOptions="Center" BackgroundColor="#666666" />
-          <!--, StringFormat='{}{0:yyyy-MM-dd  -  dddd}'-->
+          <DatePicker Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="EndDate" Date="{x:Static sys:DateTime.Now}" HorizontalOptions="Center" BackgroundColor="#666666">
+            <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+            <DatePicker.MinimumDate>
+              <sys:DateTime x:FactoryMethod="Parse">
+                <x:Arguments>
+                  <x:String>Jan 1 2016</x:String>
+                </x:Arguments>
+              </sys:DateTime>
+            </DatePicker.MinimumDate>
+            <DatePicker.MaximumDate>
+              <sys:DateTime x:FactoryMethod="Parse">
+                <x:Arguments>
+                  <x:String>Dec 31 2020</x:String>
+                </x:Arguments>
+              </sys:DateTime>
+            </DatePicker.MaximumDate>
+          </DatePicker>
         </Grid>
 
         <Button Grid.Row="5" Grid.Column="1" Text="Save" Clicked="Save" IsEnabled="{Binding EnableSaveButton}" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" FontSize="20" />

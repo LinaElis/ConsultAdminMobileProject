@@ -4,13 +4,27 @@
              x:Class="ConsultAdminMobileProject.UI.View.RelatedEmployeesProjectsPage">
   
   <ContentPage.Content>
-    <ScrollView>
-      <ListView x:Name="EmployeeListViewItems" ItemsSource="{Binding Employees}" HasUnevenRows="True">
+      <Grid RowSpacing="0.6" Padding="10" BackgroundColor="White">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Text="Employee" HorizontalTextAlignment="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+        <Label Grid.Row="0" Grid.Column="1" Text="Project" HorizontalTextAlignment="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="Black" />
+      </Grid>
+    
+    <!--<ScrollView>
+      <ListView x:Name="EmployeeListViewItems" ItemsSource="{Binding EmployeeContracts}" HasUnevenRows="True" BackgroundColor="White">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
               <ViewCell.View>
-                <Grid RowSpacing="0.6" Padding="20">
+                <Grid RowSpacing="0.6" Padding="20" BackgroundColor="White">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -21,21 +35,21 @@
                   </Grid.RowDefinitions>
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <!--<ColumnDefinition Width="4*"/>-->
+                    --><!--<ColumnDefinition Width="4*"/>--><!--
                   </Grid.ColumnDefinitions>
                   
-                  <!--TODO: ändra gränssnittet så det ser ut som i wireframen!-->
+                  --><!--TODO: ändra gränssnittet så det ser ut som i wireframen!--><!--
 
-                  <!--TODO: Ändra binding så listvyn binder på en lista med emplyees kopplade till valt projekt.-->
+                  --><!--TODO: Ändra binding så listvyn binder på en lista med emplyees kopplade till valt projekt.--><!--
                   
-                  <!--<Label Grid.Row="0" Grid.Column="0"/>-->
-                  <!--<Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" IsVisible="{Binding HasImage}" Source="{Binding ImageURL}"/>-->
-                  <!--<Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasName}" Text="{Binding FullName}"/>
+                  --><!--<Label Grid.Row="0" Grid.Column="0"/>--><!--
+                  --><!--<Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" IsVisible="{Binding HasImage}" Source="{Binding ImageURL}"/>--><!--
+                  --><!--<Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasName}" Text="{Binding FullName}"/>
                   <Label Grid.Row="1" Grid.Column="0" IsVisible="{Binding HasTitle}" Text="{Binding Title}" HorizontalOptions="EndAndExpand"/>
                   <Label Grid.Row="2" Grid.Column="0" IsVisible="{Binding HasPhone}" Text="{Binding PrimaryPhoneNo}" />
-                  <Label Grid.Row="3" Grid.Column="0" IsVisible="{Binding HasEmail}" Text="{Binding PrimaryEmail}" />-->
+                  <Label Grid.Row="3" Grid.Column="0" IsVisible="{Binding HasEmail}" Text="{Binding PrimaryEmail}" />--><!--
 
-                  <!--<Label Grid.Row="4" Grid.Column="0"/>-->
+                  --><!--<Label Grid.Row="4" Grid.Column="0"/>--><!--
 
                 </Grid>
               </ViewCell.View>
@@ -43,6 +57,6 @@
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
-    </ScrollView>
+    </ScrollView>-->
   </ContentPage.Content>
 </ContentPage>

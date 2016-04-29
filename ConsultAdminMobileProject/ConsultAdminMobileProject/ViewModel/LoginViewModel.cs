@@ -66,7 +66,8 @@ namespace ConsultAdminMobileProject.ViewModel
                     CurrentUser.LocationId = logedinUser.LocationId;
                     CurrentUser.FullName = logedinUser.FullName;
                     CurrentUser.DefaultClintId = logedinUser.DefaultClintId;
-                    CurrentUser.DefaultContractId = logedinUser.DefaultContractId;
+                    CurrentUser.DefaultContractId = 1;
+                    //CurrentUser.DefaultContractId = logedinUser.DefaultContractId;
                     CurrentUser.StartTime = logedinUser.StartTime;
                     CurrentUser.EndTime = logedinUser.EndTime;
                     CurrentUser.LunchBreak = logedinUser.LunchBreak;

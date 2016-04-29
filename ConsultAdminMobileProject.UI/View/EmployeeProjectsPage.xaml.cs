@@ -21,6 +21,8 @@ namespace ConsultAdminMobileProject.UI.View
             _logger.LoggText("EmployeeProjectsPage");
             InitializeComponent();
             BindingContext = _projectViewModel;
+
+
         }
 
         private void TabbedPage_OnClicked(object sender, EventArgs e)
@@ -70,5 +72,9 @@ namespace ConsultAdminMobileProject.UI.View
         //{
         //    throw new NotImplementedException();
         //}
+        private void ProjectsEditPage_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel()));
+        }
     }
 }

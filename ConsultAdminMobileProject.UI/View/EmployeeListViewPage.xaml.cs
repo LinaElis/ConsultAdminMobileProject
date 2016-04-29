@@ -13,6 +13,7 @@ namespace ConsultAdminMobileProject.UI.View
     public partial class EmployeeListViewPage : ContentPage
     {
         private readonly EmployeeListViewModel _employeeListViewModel;
+        private readonly ProjectViewModel _projectViewModel;
         private readonly ILogger _logger = new PCLLogger();
 
         public EmployeeListViewPage()
@@ -39,6 +40,10 @@ namespace ConsultAdminMobileProject.UI.View
             var employeeClicked = e.Item;
             EmployeeViewModel employeeViewModel = new EmployeeViewModel(employeeClicked);
             await employeeViewModel.GetExtendedEmployee();
+           
+            ProjectViewModel projectViewModel = new ProjectViewModel();
+            projectViewModel.LoggedIn(employeeClicked);
+
             await Navigation.PushAsync(new EmployeeTabbedRootPage(employeeViewModel));
         }
     }

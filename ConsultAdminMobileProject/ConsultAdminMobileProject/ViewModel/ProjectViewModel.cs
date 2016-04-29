@@ -22,7 +22,7 @@ namespace ConsultAdminMobileProject.ViewModel
 
         private string _clientName;
         private string _contractName;
-        private string _projectName;
+        //private string _projectName;
         private string _description;
         private DateTime _endDate;
         private DateTime _startDate;
@@ -137,16 +137,16 @@ namespace ConsultAdminMobileProject.ViewModel
             }
         }
 
-        public string ProjectName
-        {
-            get { return _projectName; }
-            set
-            {
-                if (_projectName != value)
-                    EnableSaveButton = true;
-                SetPropertyField(nameof(ProjectName), ref _projectName, value);
-            }
-        }
+        //public string ProjectName
+        //{
+        //    get { return _projectName; }
+        //    set
+        //    {
+        //        if (_projectName != value)
+        //            EnableSaveButton = true;
+        //        SetPropertyField(nameof(ProjectName), ref _projectName, value);
+        //    }
+        //}
 
         public string Description
         {
@@ -174,6 +174,17 @@ namespace ConsultAdminMobileProject.ViewModel
             foreach (var contract in matchingClients)
             {
                 ContractList.Add(contract.ContractName);
+            }
+        }
+
+        public void LoggedIn(object param)
+        {
+            var employeeClicked = param as Employee;
+            if (employeeClicked != null) EmployeeId = employeeClicked.EmployeeId;
+
+            if (EmployeeId == CurrentUser.EmployeeId)
+            {
+                EnableButton = true;
             }
         }
 
@@ -320,10 +331,9 @@ namespace ConsultAdminMobileProject.ViewModel
             _contract.ClientId = SelectedClientId;
             _contract.ProjectId = ProjectId;
             _contract.ClientName = selectedClientname;
-            _contract.ContractName = ContractName;
-            _contract.ProjectName = ProjectName;
-            _contract.Description = Description;
             _contract.ContractName = selectedContractName;
+            //_contract.ProjectName = ProjectName;
+            _contract.Description = Description;
             _contract.StartDate = StartDate;
             _contract.EndDate = EndDate;
         }
