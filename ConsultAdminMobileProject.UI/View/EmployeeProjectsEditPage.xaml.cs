@@ -16,9 +16,7 @@ namespace ConsultAdminMobileProject.UI.View
         private readonly ProjectViewModel _projectViewModel = new ProjectViewModel();
 
         private readonly ILogger _logger = new PCLLogger();
-        private List<int> startDate = new List<int>();
-        private List<string> endDate = new List<string>();
-
+    
         public EmployeeProjectsEditPage(ProjectViewModel projectViewModel)
         {
             _logger.LoggText("EmployeeProjectsEditPage");
@@ -27,8 +25,7 @@ namespace ConsultAdminMobileProject.UI.View
 
             _projectViewModel = projectViewModel;
 
-            //LoadClientNameList();
-
+            LoadClientNameList();
 
             if (_projectViewModel.ClientNameList != null)
             {
@@ -43,20 +40,20 @@ namespace ConsultAdminMobileProject.UI.View
                 }
             }
 
-            if (_projectViewModel.ClientNameList != null)
-            {
-                foreach (var client in _projectViewModel.ClientNameList)
-                {
-                    ClientPicker.Items.Add(client);
-                    ClientPicker.SelectedIndex = _projectViewModel.ClientIndex;
-                }
+            //if (_projectViewModel.ClientNameList != null)
+            //{
+            //    foreach (var client in _projectViewModel.ClientNameList)
+            //    {
+            //        ClientPicker.Items.Add(client);
+            //        ClientPicker.SelectedIndex = _projectViewModel.ClientIndex;
+            //    }
 
-                foreach (var contract in _projectViewModel.ContractList)
-                {
-                    ContractPicker.Items.Add(contract);
-                    ClientPicker.SelectedIndex = _projectViewModel.ContractIndex;
-                }
-            }
+            //    foreach (var contract in _projectViewModel.ContractList)
+            //    {
+            //        ContractPicker.Items.Add(contract);
+            //        ClientPicker.SelectedIndex = _projectViewModel.ContractIndex;
+            //    }
+            //}
 
             BindingContext = _projectViewModel;
 
@@ -102,28 +99,13 @@ namespace ConsultAdminMobileProject.UI.View
             };
         }
 
-        //private void SetDatePicker()
-        //{
-        //    DateTime inspected_at = DateTime.Now;
-
-        //    int year = inspected_at.Year;
-        //    int month = inspected_at.Month;
-        //    int day = inspected_at.Day;
-
-        //    StartDate.
-        //}
-
-        private void DeleteField(object sender, EventArgs e)
-        {
-            //TODO: Andvänd metoden _projectViewModel.DeleteClientContract här i knappen för att ta bort tillagt projekt.
-        }
-
         private async void Save(object sender, EventArgs e)
         {
             try
             {
                 await _projectViewModel.SaveProjects();
                 SavedValues.Text = "Time report has been saved!";
+                await Navigation.PopAsync();
             }
             catch (Exception)
             {

@@ -21,8 +21,6 @@ namespace ConsultAdminMobileProject.UI.View
             _logger.LoggText("EmployeeProjectsPage");
             InitializeComponent();
             BindingContext = _projectViewModel;
-
-
         }
 
         private void TabbedPage_OnClicked(object sender, EventArgs e)
@@ -49,6 +47,7 @@ namespace ConsultAdminMobileProject.UI.View
         private async void EditTapped(object sender, EventArgs e)
         {
             await _projectViewModel.LoadClients();
+            await _projectViewModel.GetContract();
             Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel())));
 
             // TODO: Gå till editläge på knappen. Om id == inloggat id syns ikonen och går att använda, annars disabla.
@@ -61,20 +60,14 @@ namespace ConsultAdminMobileProject.UI.View
             // TODO: Gå till editläge på knappen. Om id == inloggat id syns ikonen och går att använda, annars disabla.
         }
 
-        //private void EditClicked(object sender, EventArgs e)
-        //{
-        //    Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new EmployeeProjectsEditPage(_navigation)));
-
-        //    // TODO: Gå till editläge på knappen. Om id == inloggat id syns ikonen och går att använda, annars disabla.
-        //}
-
-        //private void AddClicked(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
         private void ProjectsEditPage_OnClicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel()));
+        }
+
+        private void DeleteField(object sender, EventArgs e)
+        {
+            //TODO: Andvänd metoden _projectViewModel.DeleteClientContract här i knappen för att ta bort tillagt projekt.
         }
     }
 }

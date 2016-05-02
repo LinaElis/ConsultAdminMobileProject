@@ -63,15 +63,18 @@
                       <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*" />
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="2*" />
                       <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Text="{Binding ClientName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="Black"  />
-                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding StartDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding StartDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
 
                     <Label Grid.Row="1" Grid.Column="0" Text="{Binding ContractName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="Black" />
-                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding EndDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding EndDate}" HorizontalOptions="End" FontFamily="Arial" TextColor="Black" />
+
+                    <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Text="X" Clicked="DeleteField" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" TextColor="Black"  FontSize="15" />
 
                     <!--<Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Source="@drawable/pencil32" IsVisible="{Binding EnableButton}" WidthRequest="30" HeightRequest="30">
                       <Image.GestureRecognizers>
@@ -90,7 +93,6 @@
         <Button Grid.Row="5" Grid.Column="0" x:Name="TabbedPage" Text="To tabbed page" Clicked="TabbedPage_OnClicked" />
         <Button Grid.Row="5" Grid.Column="1" x:Name="ProjectPage" Text="To project page from menu" Clicked="ProjectPage_OnClicked" />
         <Button Grid.Row="5" Grid.Column="2" x:Name="ProjectsEditPage" Text="To project edit page from menu" Clicked="ProjectsEditPage_OnClicked" />
-
       </Grid>
     </ScrollView>
   </ContentPage.Content>

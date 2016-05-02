@@ -15,14 +15,6 @@
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
@@ -31,15 +23,15 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Choose existing client" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-        <Picker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ClientPicker" SelectedIndex="{Binding ClientIndex}" BackgroundColor="#f2f2f2" />
-        <Label Grid.Row="1" Grid.Column="0" Text="{Binding ClientName}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" />
+        <Picker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ClientPicker" SelectedIndex="{Binding ClientIndex}" BackgroundColor="#666666" />
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ClientName}" HorizontalTextAlignment="Center" FontAttributes="Bold" />
 
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="Choose existing project" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-        <Picker Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ContractPicker" SelectedIndex="{Binding ContractIndex}" BackgroundColor="#f2f2f2" />
-        <Label Grid.Row="3" Grid.Column="0" Text="{Binding ContractName}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" />
+        <Picker Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ContractPicker" SelectedIndex="{Binding ContractIndex}" BackgroundColor="#666666" />
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ContractName}" HorizontalTextAlignment="Center" FontAttributes="Bold" />
 
-        <Grid Padding="10" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" >
-          
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" >
+          <!--Padding="10"-->
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -89,39 +81,8 @@
             </DatePicker.MaximumDate>
           </DatePicker>
         </Grid>
-
-        <Button Grid.Row="5" Grid.Column="1" Text="Save" Clicked="Save" IsEnabled="{Binding EnableSaveButton}" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" FontSize="20" />
+        <Button Grid.Row="5" Grid.Column="1" Text="Save" Clicked="Save" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" FontSize="20" />
         <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" x:Name="SavedValues" IsVisible="True" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-
-        <ListView
-            Grid.Row="7"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            x:Name="SavedValuesList">
-          <!--HasUnevenRows="True"-->
-          <!--ItemsSource="{Binding EmployeeProjectList}"-->
-          <ListView.ItemTemplate>
-            <DataTemplate >
-              <ViewCell >
-                <ViewCell.View >
-                  <Grid Padding="10" BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                      <RowDefinition Height="Auto"/>
-                      <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*" />
-                      <ColumnDefinition Width="3*" />
-                      <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="ChosenClientProject" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Text="List chosen client + project here" FontFamily="Arial" TextColor="Black" />
-                    <Button Grid.Row="0" Grid.Column="2" Text="X" Clicked="DeleteField" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" TextColor="Black"  FontSize="15" />
-                  </Grid>
-                </ViewCell.View>
-              </ViewCell>
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
       </Grid>
     </ScrollView>
   </ContentPage.Content>

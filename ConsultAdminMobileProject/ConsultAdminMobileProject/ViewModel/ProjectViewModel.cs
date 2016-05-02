@@ -22,14 +22,13 @@ namespace ConsultAdminMobileProject.ViewModel
 
         private string _clientName;
         private string _contractName;
-        //private string _projectName;
         private string _description;
         private DateTime _endDate;
         private DateTime _startDate;
         private int _clientIndex;
         private int _contractIndex;
         private int _employeeId;
-        private bool _enableSaveButton;
+        //private bool _enableSaveButton;
 
         public ProjectViewModel()
         { }
@@ -57,19 +56,19 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_employeeId != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(EmployeeId), ref _employeeId, value);
             }
         }
 
-        public bool EnableSaveButton
-        {
-            get
-            {
-                return _enableSaveButton;
-            }
-            set { SetPropertyField(nameof(EnableSaveButton), ref _enableSaveButton, value); }
-        }
+        //public bool EnableSaveButton
+        //{
+        //    get
+        //    {
+        //        return _enableSaveButton;
+        //    }
+        //    set { SetPropertyField(nameof(EnableSaveButton), ref _enableSaveButton, value); }
+        //}
 
         public string ClientName
         {
@@ -77,7 +76,7 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_clientName != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(ClientName), ref _clientName, value);
             }
         }
@@ -88,7 +87,7 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_clientIndex != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(ClientIndex), ref _clientIndex, value);
             }
         }
@@ -99,7 +98,7 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_contractName != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(ContractName), ref _contractName, value);
             }
         }
@@ -110,7 +109,7 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_contractIndex != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(ContractIndex), ref _contractIndex, value);
             }
         }
@@ -121,7 +120,7 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_startDate != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(StartDate), ref _startDate, value);
             }
         }
@@ -132,21 +131,10 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_endDate != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(EndDate), ref _endDate, value);
             }
         }
-
-        //public string ProjectName
-        //{
-        //    get { return _projectName; }
-        //    set
-        //    {
-        //        if (_projectName != value)
-        //            EnableSaveButton = true;
-        //        SetPropertyField(nameof(ProjectName), ref _projectName, value);
-        //    }
-        //}
 
         public string Description
         {
@@ -154,11 +142,10 @@ namespace ConsultAdminMobileProject.ViewModel
             set
             {
                 if (_description != value)
-                    EnableSaveButton = true;
+                    //EnableSaveButton = true;
                 SetPropertyField(nameof(Description), ref _description, value);
             }
         }
-
 
         public void ClientIndexChanged(int index)
         {
@@ -184,7 +171,7 @@ namespace ConsultAdminMobileProject.ViewModel
 
             if (EmployeeId == CurrentUser.EmployeeId)
             {
-                EnableButton = true;
+                EnableButton = false;
             }
         }
 
@@ -259,6 +246,24 @@ namespace ConsultAdminMobileProject.ViewModel
             SelectedContractId = ContractIdList[ContractIndex];
         }
 
+        public void ContractSaveAndEditValues()
+        {
+            var clientName = ClientList.FirstOrDefault(x => x.ClientId == SelectedClientId);
+            string selectedClientname = (clientName != null) ? clientName.ClientName : "";
+            var contractName = ClientList.FirstOrDefault(x => x.ContractId == SelectedContractId);
+            string selectedContractName = (contractName != null) ? contractName.ContractName : "";
+
+            _contract.EmployeeId = CurrentUser.EmployeeId;
+            _contract.ClientId = SelectedClientId;
+            _contract.ProjectId = ProjectId;
+            _contract.ClientName = selectedClientname;
+            _contract.ContractName = selectedContractName;
+            //_contract.ProjectName = ProjectName;
+            _contract.Description = Description;
+            _contract.StartDate = StartDate;
+            _contract.EndDate = EndDate;
+        }
+
         public async Task SaveProjects()
         {
             GetClientIdAndContractId();
@@ -320,23 +325,7 @@ namespace ConsultAdminMobileProject.ViewModel
             }
         }
 
-        public void ContractSaveAndEditValues()
-        {
-            var clientName = ClientList.FirstOrDefault(x => x.ClientId == SelectedClientId);
-            string selectedClientname = (clientName != null) ? clientName.ClientName : "";
-            var contractName = ClientList.FirstOrDefault(x => x.ContractId == SelectedContractId);
-            string selectedContractName = (contractName != null) ? contractName.ContractName : "";
-
-            _contract.EmployeeId = CurrentUser.EmployeeId;
-            _contract.ClientId = SelectedClientId;
-            _contract.ProjectId = ProjectId;
-            _contract.ClientName = selectedClientname;
-            _contract.ContractName = selectedContractName;
-            //_contract.ProjectName = ProjectName;
-            _contract.Description = Description;
-            _contract.StartDate = StartDate;
-            _contract.EndDate = EndDate;
-        }
+        
 
         //public async Task GetClientContractToFillValues()
         //{
