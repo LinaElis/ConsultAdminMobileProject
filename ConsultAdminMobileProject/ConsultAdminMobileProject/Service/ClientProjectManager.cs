@@ -9,6 +9,7 @@ using ConsultAdmin.Entities;
 using ConsultAdmin.Entities.ConsultAdmin.Model;
 using ConsultAdminMobileProject.Fake;
 using ConsultAdminMobileProject.Interface;
+using ConsultAdminMobileProject.Model;
 using Newtonsoft.Json;
 using Xamarin;
 
@@ -79,10 +80,12 @@ namespace ConsultAdminMobileProject.Service
                 _logger.LoggEvent("SaveContract", new Dictionary<string, string>()
                 {
                     {"EmployeeId", contract.EmployeeId.ToString()},
+                    //{"EmployeeId", CurrentUser.EmployeeId.ToString()},
                     {"ClientId", contract.ClientId.ToString()},
-                    {"StartDate", contract.StartDate.ToString()},
-                    {"EndDate", contract.EndDate.ToString()}
-
+                    {"ClientName", contract.ClientName },
+                    {"ContractName", contract.ContractName },
+                    {"StartDate", contract.StartDate.ToString("yyyy-MM-dd")},
+                    {"EndDate", contract.EndDate.ToString("yyyy-MM-dd")}
                 });
 
                 handle.Stop();

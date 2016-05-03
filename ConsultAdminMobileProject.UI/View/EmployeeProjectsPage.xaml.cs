@@ -16,8 +16,13 @@ namespace ConsultAdminMobileProject.UI.View
         private readonly ProjectViewModel _projectViewModel = new ProjectViewModel();
   
 
-        public EmployeeProjectsPage()
-        {          
+        public EmployeeProjectsPage(ProjectViewModel projectViewModel)
+        {
+            if (projectViewModel != null)
+            {
+                _projectViewModel = projectViewModel;
+            }
+
             _logger.LoggText("EmployeeProjectsPage");
             InitializeComponent();
             BindingContext = _projectViewModel;

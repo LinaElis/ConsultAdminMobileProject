@@ -40,7 +40,10 @@ namespace ConsultAdminMobileProject.UI.View
             var employeeClicked = e.Item;
             EmployeeViewModel employeeViewModel = new EmployeeViewModel(employeeClicked);
             await employeeViewModel.GetExtendedEmployee();
-           
+
+            ProjectViewModel projectViewModels = new ProjectViewModel();
+            await projectViewModels.FillContractList();
+
             ProjectViewModel projectViewModel = new ProjectViewModel();
             projectViewModel.LoggedIn(employeeClicked);
 

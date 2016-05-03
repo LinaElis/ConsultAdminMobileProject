@@ -36,7 +36,7 @@ namespace ConsultAdminMobileProject.ViewModel
         public int SelectedClientId { get; set; }
         public int SelectedContractId { get; set; }
         public int TimeReportId { get; set; }
-        public int ProjectId { get; set; }
+        //public int ProjectId { get; set; }
         public int ContractId { get; set; }
 
         //public static List<int> Id { get; set; }
@@ -44,6 +44,7 @@ namespace ConsultAdminMobileProject.ViewModel
         public static List<DateTime> EndDateList { get; set; }
         public List<EmployeeContract> EmployeeContractList { get; set; }
         public List<TimeReport> ClientList { get; set; }
+        public List<Contract> Contract { get; set; } 
         public List<string> ClientNameList { get; set; }
         public List<int> DistinctClientIdList { get; set; }
         public List<string> ContractList { get; set; }
@@ -69,6 +70,9 @@ namespace ConsultAdminMobileProject.ViewModel
         //    }
         //    set { SetPropertyField(nameof(EnableSaveButton), ref _enableSaveButton, value); }
         //}
+
+        public string UserFullname { get; set; }
+
 
         public string ClientName
         {
@@ -255,11 +259,11 @@ namespace ConsultAdminMobileProject.ViewModel
 
             _contract.EmployeeId = CurrentUser.EmployeeId;
             _contract.ClientId = SelectedClientId;
-            _contract.ProjectId = ProjectId;
+            //_contract.ProjectId = ProjectId;
             _contract.ClientName = selectedClientname;
             _contract.ContractName = selectedContractName;
             //_contract.ProjectName = ProjectName;
-            _contract.Description = Description;
+            //_contract.Description = Description;
             _contract.StartDate = StartDate;
             _contract.EndDate = EndDate;
         }
@@ -325,7 +329,20 @@ namespace ConsultAdminMobileProject.ViewModel
             }
         }
 
-        
+        public async Task<bool> FillContractList()
+        {
+            //UserFullname = CurrentUser.FullName;
+            ContractManager nm = new ContractManager();
+            List<Contract> contract = await nm.GetAllContracts();
+
+            if (contract != null && contract.Count > 0)
+            {
+                Contract = contract;
+                return true;
+            }
+            Contract = new List<Contract>();
+            return false;
+        }
 
         //public async Task GetClientContractToFillValues()
         //{

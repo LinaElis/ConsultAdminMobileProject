@@ -32,11 +32,14 @@ namespace ConsultAdminMobileProject.UI.View
                 foreach (var client in _projectViewModel.ClientNameList)
                 {
                     ClientPicker.Items.Add(client);
+                    ClientPicker.SelectedIndex = _projectViewModel.ClientIndex;
+                
                 }
 
                 foreach (var contract in _projectViewModel.ContractList)
                 {
                     ContractPicker.Items.Add(contract);
+                    ClientPicker.SelectedIndex = _projectViewModel.ContractIndex;
                 }
             }
 
@@ -94,7 +97,7 @@ namespace ConsultAdminMobileProject.UI.View
 
                 if (ContractPicker.Items.Any())
                 {
-                    ContractPicker.SelectedIndex = 0;
+                    ContractPicker.SelectedIndex = -1;
                 }
             };
         }
@@ -105,7 +108,7 @@ namespace ConsultAdminMobileProject.UI.View
             {
                 await _projectViewModel.SaveProjects();
                 SavedValues.Text = "Time report has been saved!";
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new EmployeeProjectsPage(new ProjectViewModel()));
             }
             catch (Exception)
             {

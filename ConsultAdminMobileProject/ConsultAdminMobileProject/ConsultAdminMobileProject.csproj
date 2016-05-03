@@ -46,6 +46,7 @@
     <Compile Include="Service\AccountManager.cs" />
     <Compile Include="Service\ClientManager.cs" />
     <Compile Include="Service\ClientProjectManager.cs" />
+    <Compile Include="Service\ContractManager.cs" />
     <Compile Include="Service\EmployeeManager.cs" />
     <Compile Include="Service\LocalStorageManager.cs" />
     <Compile Include="Service\NewsManager.cs" />

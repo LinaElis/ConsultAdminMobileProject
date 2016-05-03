@@ -13,7 +13,7 @@ namespace ConsultAdminMobileProject.UI.View
         public EmployeeTabbedRootPage(EmployeeViewModel employeeViewModel)
         {
             this.Children.Add(new EmployeeGeneralPage(employeeViewModel) { Title = "General" });
-            this.Children.Add(new EmployeeProjectsPage() { Title = "Project" });
+            this.Children.Add(new EmployeeProjectsPage(new ProjectViewModel()) { Title = "Project" });
         }
     }
 }
