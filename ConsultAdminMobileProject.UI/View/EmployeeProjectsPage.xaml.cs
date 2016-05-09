@@ -38,12 +38,6 @@ namespace ConsultAdminMobileProject.UI.View
             Navigation.PushModalAsync(new ProjectsPage());
         }
 
-        //protected override void OnDisappearing()
-        //{
-        //    ToolbarItems.Clear();
-        //    base.OnDisappearing();
-        //}
-
         //protected override void OnAppearing()
         //{
         //    base.OnAppearing();

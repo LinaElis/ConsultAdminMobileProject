@@ -329,19 +329,21 @@ namespace ConsultAdminMobileProject.ViewModel
             }
         }
 
-        public async Task<bool> FillContractList()
+        public async Task FillContractList()
         {
             //UserFullname = CurrentUser.FullName;
-            ContractManager nm = new ContractManager();
-            List<Contract> contract = await nm.GetAllContracts();
-
-            if (contract != null && contract.Count > 0)
-            {
-                Contract = contract;
-                return true;
-            }
+            ContractManager cm = new ContractManager();
+            List<Contract> contract = await cm.GetAllContracts();
             Contract = new List<Contract>();
-            return false;
+
+            //if (contract != null && contract.Count > 0)
+            //{
+            //    Contract = contract;              
+            //}         
+            foreach (var contracts in contract)
+            {
+                    Contract.Add(contracts);
+            }
         }
 
         //public async Task GetClientContractToFillValues()

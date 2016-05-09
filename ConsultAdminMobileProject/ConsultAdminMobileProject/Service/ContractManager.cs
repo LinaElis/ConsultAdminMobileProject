@@ -20,7 +20,7 @@ namespace ConsultAdminMobileProject.Service
 
         public async Task<List<Contract>> GetAllContracts()
         {
-            List<Contract> news = new List<Contract>();
+            List<Contract> contract = new List<Contract>();
 
             var handle = Insights.TrackTime("Time_GetAllContracts");
             handle.Start();
@@ -40,7 +40,7 @@ namespace ConsultAdminMobileProject.Service
                 string contents = await contentsTask.ConfigureAwait(false);
 
                 // Deserialize the JSON data into ContractManager (List of contracts)
-                news = JsonConvert.DeserializeObject<List<Contract>>(contents);
+                contract = JsonConvert.DeserializeObject<List<Contract>>(contents);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace ConsultAdminMobileProject.Service
                 handle.Stop();
             }
 
-            return news;
+            return contract;
         }
     }
 }
