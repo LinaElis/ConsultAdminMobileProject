@@ -4,7 +4,7 @@
              x:Class="ConsultAdminMobileProject.UI.View.RelatedEmployeesProjectsPage">
   
   <ContentPage.Content>
-      <Grid RowSpacing="0.6" Padding="10" BackgroundColor="White">
+      <Grid RowSpacing="0.6" Padding="10" >
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
@@ -13,9 +13,9 @@
           <ColumnDefinition Width="*"/>
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Text="Employee" HorizontalTextAlignment="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-        <Label Grid.Row="0" Grid.Column="1" Text="Project" HorizontalTextAlignment="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="Black" />
+        <Label Grid.Row="0" Grid.Column="0" Text="Employee" HorizontalTextAlignment="Center" FontFamily="Arial" FontAttributes="Bold" />
+        <Label Grid.Row="0" Grid.Column="1" Text="Project" HorizontalTextAlignment="Center" FontFamily="Arial" FontAttributes="Bold"/>
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
       </Grid>
     
     <!--<ScrollView>

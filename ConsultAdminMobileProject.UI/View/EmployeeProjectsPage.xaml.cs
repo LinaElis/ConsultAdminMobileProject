@@ -18,11 +18,6 @@ namespace ConsultAdminMobileProject.UI.View
 
         public EmployeeProjectsPage()
         {
-            //if (projectViewModel != null)
-            //{
-            //    _projectViewModel = projectViewModel;
-            //}
-
             _logger.LoggText("EmployeeProjectsPage");
             InitializeComponent();
         }
@@ -33,22 +28,21 @@ namespace ConsultAdminMobileProject.UI.View
             base.OnAppearing();
             await _projectViewModel.FillContractList();
             BindingContext = _projectViewModel;
-            string s = "";
         }
 
-        private void TabbedPage_OnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushModalAsync(new ProjectsTabbedPage());
-        }
-
-        private void ProjectPage_OnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushModalAsync(new ProjectsPage());
-        }
-
-        //protected override void OnAppearing()
+        //private void TabbedPage_OnClicked(object sender, EventArgs e)
         //{
-        //    base.OnAppearing();
+        //    Navigation.PushModalAsync(new ProjectsTabbedPage());
+        //}
+
+        //private void ProjectPage_OnClicked(object sender, EventArgs e)
+        //{
+        //    Navigation.PushModalAsync(new ProjectsPage());
+        //}
+
+        //private void ProjectsEditPage_OnClicked(object sender, EventArgs e)
+        //{
+        //    Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel()));
         //}
 
         //private async void EditTapped(object sender, EventArgs e)
@@ -67,11 +61,6 @@ namespace ConsultAdminMobileProject.UI.View
             Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel())));
 
             // TODO: Gå till editläge på knappen. Om id == inloggat id syns ikonen och går att använda, annars disabla.
-        }
-
-        private void ProjectsEditPage_OnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel()));
         }
 
         private void DeleteField(object sender, EventArgs e)

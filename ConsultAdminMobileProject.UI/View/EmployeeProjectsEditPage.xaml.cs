@@ -91,7 +91,8 @@ namespace ConsultAdminMobileProject.UI.View
             {             
                 SavedValues.Text = "Saved!";
                 await Task.Delay(1000);
-                await Navigation.PushModalAsync(new EmployeeProjectsPage());
+                await Navigation.PopModalAsync();
+                //await Navigation.PushModalAsync(new EmployeeProjectsPage());
             }
             else
             {

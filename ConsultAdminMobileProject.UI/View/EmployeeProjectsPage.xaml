@@ -24,10 +24,10 @@
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
 
-          <Label Grid.Row="0" Grid.Column="0" Text="Client name" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="#ccffcc" />
+          <Label Grid.Row="0" Grid.Column="0" Text="Client name" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="#ccffcc" />
           <Label Grid.Row="0" Grid.Column="2" Text="Start date" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="#ccffcc" />
 
-          <Label Grid.Row="1" Grid.Column="0" Text="Contract name" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="#ffdab3" />
+          <Label Grid.Row="1" Grid.Column="0" Text="Contract name" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="#ffdab3" />
           <Label Grid.Row="1" Grid.Column="2" Text="End date" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="#ffdab3" />
 
           <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
@@ -55,7 +55,7 @@
                       Grid.Column="0"
                       Grid.ColumnSpan="4">
             <ListView HasUnevenRows="True"
-                ItemsSource="{Binding ContractObservable}">
+                      ItemsSource="{Binding ContractObservable}">
               <ListView.ItemTemplate>
                 <DataTemplate >
                   <ViewCell >
