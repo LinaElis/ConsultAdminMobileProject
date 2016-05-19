@@ -30,5 +30,9 @@ namespace ConsultAdmin.Entities
         public string Description { get; set; }
 
         public Collection<EmployeeContract> EmployeeContracts { get; set; }
+
+        //public string StartDates => StartDate.ToString("dd - dddd");
+
+        //public string EndDates => EndDate.ToString("dd - dddd");
     }
 }

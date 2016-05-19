@@ -13,19 +13,27 @@ namespace ConsultAdminMobileProject.UI.View
     public partial class EmployeeProjectsPage : ContentPage
     {
         private readonly ILogger _logger = new PCLLogger();
-        private readonly ProjectViewModel _projectViewModel = new ProjectViewModel();
+        private ProjectViewModel _projectViewModel;
   
 
-        public EmployeeProjectsPage(ProjectViewModel projectViewModel)
+        public EmployeeProjectsPage()
         {
-            if (projectViewModel != null)
-            {
-                _projectViewModel = projectViewModel;
-            }
+            //if (projectViewModel != null)
+            //{
+            //    _projectViewModel = projectViewModel;
+            //}
 
             _logger.LoggText("EmployeeProjectsPage");
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            _projectViewModel = new ProjectViewModel();
+            base.OnAppearing();
+            await _projectViewModel.FillContractList();
             BindingContext = _projectViewModel;
+            string s = "";
         }
 
         private void TabbedPage_OnClicked(object sender, EventArgs e)
@@ -43,16 +51,18 @@ namespace ConsultAdminMobileProject.UI.View
         //    base.OnAppearing();
         //}
 
-        private async void EditTapped(object sender, EventArgs e)
-        {
-            await _projectViewModel.LoadClients();
-            await _projectViewModel.GetContract();
-            Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel())));
+        //private async void EditTapped(object sender, EventArgs e)
+        //{
+        //    await _projectViewModel.LoadClients();
+        //    await _projectViewModel.GetContract();
+        //    Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel())));
 
-            // TODO: Gå till editläge på knappen. Om id == inloggat id syns ikonen och går att använda, annars disabla.
-        }
+        //    // TODO: Gå till editläge på knappen. Om id == inloggat id syns ikonen och går att använda, annars disabla.
+        //}
+
         private async void AddTapped(object sender, EventArgs e)
         {
+            _projectViewModel = new ProjectViewModel();
             await _projectViewModel.LoadClients();
             Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new EmployeeProjectsEditPage(new ProjectViewModel())));
 

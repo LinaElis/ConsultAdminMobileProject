@@ -13,7 +13,8 @@ namespace ConsultAdminMobileProject.UI.View
 {
     public partial class EmployeeProjectsEditPage : ContentPage
     {
-        private readonly ProjectViewModel _projectViewModel = new ProjectViewModel();
+        private readonly ProjectViewModel _projectViewModel;
+
 
         private readonly ILogger _logger = new PCLLogger();
     
@@ -22,45 +23,17 @@ namespace ConsultAdminMobileProject.UI.View
             _logger.LoggText("EmployeeProjectsEditPage");
 
             InitializeComponent();
-
-            _projectViewModel = projectViewModel;
-
+            _projectViewModel = projectViewModel;       
             LoadClientNameList();
-
-            if (_projectViewModel.ClientNameList != null)
-            {
-                foreach (var client in _projectViewModel.ClientNameList)
-                {
-                    ClientPicker.Items.Add(client);
-                    ClientPicker.SelectedIndex = _projectViewModel.ClientIndex;
-                
-                }
-
-                foreach (var contract in _projectViewModel.ContractList)
-                {
-                    ContractPicker.Items.Add(contract);
-                    ClientPicker.SelectedIndex = _projectViewModel.ContractIndex;
-                }
-            }
-
-            //if (_projectViewModel.ClientNameList != null)
-            //{
-            //    foreach (var client in _projectViewModel.ClientNameList)
-            //    {
-            //        ClientPicker.Items.Add(client);
-            //        ClientPicker.SelectedIndex = _projectViewModel.ClientIndex;
-            //    }
-
-            //    foreach (var contract in _projectViewModel.ContractList)
-            //    {
-            //        ContractPicker.Items.Add(contract);
-            //        ClientPicker.SelectedIndex = _projectViewModel.ContractIndex;
-            //    }
-            //}
-
             BindingContext = _projectViewModel;
 
             _logger.LoggEvent("EmployeeProjectsEditPage", new Dictionary<string, string>() { { "EmployeeId", _projectViewModel.EmployeeId.ToString() } });
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            SetClientPicker();
         }
 
         private async void LoadClientNameList()
@@ -68,6 +41,18 @@ namespace ConsultAdminMobileProject.UI.View
             try
             {
                 await _projectViewModel.LoadClients();
+
+                foreach (var client in _projectViewModel.ClientNameList)
+                {
+                    ClientPicker.Items.Add(client);
+                }
+
+                foreach (var contract in _projectViewModel.ContractList)
+                {
+                    ContractPicker.Items.Add(contract);
+                }
+
+                ClientPicker.SelectedIndex = 0;
             }
 
             catch (Exception error)
@@ -76,11 +61,7 @@ namespace ConsultAdminMobileProject.UI.View
             }
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            SetClientPicker();
-        }
+    
 
         private void SetClientPicker()
         {
@@ -97,23 +78,35 @@ namespace ConsultAdminMobileProject.UI.View
 
                 if (ContractPicker.Items.Any())
                 {
-                    ContractPicker.SelectedIndex = -1;
+                    ContractPicker.SelectedIndex = 0;
                 }
             };
         }
 
         private async void Save(object sender, EventArgs e)
         {
-            try
-            {
-                await _projectViewModel.SaveProjects();
-                SavedValues.Text = "Time report has been saved!";
-                await Navigation.PushAsync(new EmployeeProjectsPage(new ProjectViewModel()));
+            var saveSuccess = await _projectViewModel.SaveProjects();
+
+            if (saveSuccess)
+            {             
+                SavedValues.Text = "Saved!";
+                await Task.Delay(1000);
+                await Navigation.PushModalAsync(new EmployeeProjectsPage());
             }
-            catch (Exception)
+            else
             {
                 SavedValues.Text = "Something went wrong..";
             }
+        }
+
+        private void StartDate_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            _projectViewModel?.StartDateProject();
+        }
+
+        private void EndDate_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            _projectViewModel?.StartDateProject();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ConsultAdminMobileProject.Service
             "http://consultadminwebserver.azurewebsites.net/api/Contract";
         private readonly ILogger _logger = new PCLLogger();
 
-        public async Task<List<Contract>> GetAllContracts()
+        public async Task <List<Contract>> GetAllContracts()
         {
             List<Contract> contract = new List<Contract>();
 

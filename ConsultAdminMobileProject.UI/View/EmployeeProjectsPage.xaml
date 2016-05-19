@@ -4,9 +4,9 @@
              x:Class="ConsultAdminMobileProject.UI.View.EmployeeProjectsPage">
 
   <ContentPage.Content>
-    <ScrollView>
+    <!--<ScrollView>-->
       <StackLayout Orientation="Vertical">
-        <Grid Padding="10" BackgroundColor="White">
+        <Grid Padding="10">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,81 +18,83 @@
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
 
-          <Label Grid.Row="0" Grid.Column="0" Text="Client name" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-          <Label Grid.Row="0" Grid.Column="2" Text="Start date" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+          <Label Grid.Row="0" Grid.Column="0" Text="Client name" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="#ccffcc" />
+          <Label Grid.Row="0" Grid.Column="2" Text="Start date" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="#ccffcc" />
 
-          <!--TODO: Ta bort image (ligger i listvyn)-->
-          <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="Start" Source="@drawable/pencil32" IsVisible="{Binding EnableButton}" WidthRequest="25" HeightRequest="25" VerticalOptions="CenterAndExpand">
-            <Image.GestureRecognizers>
-              <TapGestureRecognizer Tapped="EditTapped" />
-            </Image.GestureRecognizers>
-          </Image>
-          <!--TODO: Propertyn Myself -> om vald employee == inloggat id syns ikonerna, annars disabla.-->
-          <!--Lägg ovan ev.. CommandParameter="{Binding .}"-->
-          <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End" Source="@drawable/plus32" IsVisible="{Binding EnableButton}" WidthRequest="25" HeightRequest="25" VerticalOptions="CenterAndExpand">
+          <Label Grid.Row="1" Grid.Column="0" Text="Contract name" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="#ffdab3" />
+          <Label Grid.Row="1" Grid.Column="2" Text="End date" HorizontalOptions="Start" FontFamily="Arial" FontAttributes="Bold" TextColor="#ffdab3" />
+
+          <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+
+          <Image Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HorizontalOptions="Start" Source="@drawable/plus32" WidthRequest="25" HeightRequest="25" VerticalOptions="CenterAndExpand">
             <Image.GestureRecognizers>
               <TapGestureRecognizer Tapped="AddTapped" />
             </Image.GestureRecognizers>
           </Image>
-          <!--Lägg ovan ev.. CommandParameter="{Binding .}"-->
 
-          <Label Grid.Row="1" Grid.Column="0" Text="Project name" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
-          <Label Grid.Row="1" Grid.Column="2" Text="End date" HorizontalOptions="Center" FontFamily="Arial" FontAttributes="Bold" TextColor="Black" />
+          <!--TODO: Ta bort image (ligger i listvyn), lägg till som image-->
+          
+          <!--IsVisible="{Binding EnableButton}"-->
+          <!--<Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="Start" Source="@drawable/pencil32" WidthRequest="25" HeightRequest="25" VerticalOptions="CenterAndExpand">
+            <Image.GestureRecognizers>
+              <TapGestureRecognizer Tapped="EditTapped" />
+            </Image.GestureRecognizers>
+          </Image>-->
+          <!--TODO: Propertyn Myself -> om vald employee == inloggat id syns ikonerna, annars disabla.-->
 
-          <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="_____________________________________________________" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="Black" />
+          <!--IsVisible="{Binding EnableButton}"-->
+          
+       
+          <ScrollView Grid.Row="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="4">
+            <ListView HasUnevenRows="True"
+                ItemsSource="{Binding ContractObservable}">
+              <ListView.ItemTemplate>
+                <DataTemplate >
+                  <ViewCell >
+                    <ViewCell.View >
+                      <StackLayout>
+                        <Grid Padding="10">
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                          </Grid.RowDefinitions>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="*"/>
+                          </Grid.ColumnDefinitions>
+                          <Label Grid.Row="0" Grid.Column="0" Text="{Binding ClientName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="#ccffcc" />
+                          <Label Grid.Row="0" Grid.Column="2" Text="{Binding StartDate, StringFormat='{}{0:yyyy-MM-dd   dddd}'}" HorizontalOptions="End" FontFamily="Arial" TextColor="#ccffcc" />
 
-          <ListView
-              Grid.Row="3"
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
-              BackgroundColor="Gray"
-              x:Name="ProjectsList"
-              HasUnevenRows="True"
-              ItemsSource="{Binding Contract}">
-            <ListView.ItemTemplate>
-              <DataTemplate >
-                <ViewCell >
-                  <ViewCell.View >
-                    <Grid Padding="10">
-                      <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                      </Grid.RowDefinitions>
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*"/>
-                      </Grid.ColumnDefinitions>
-                      <Label Grid.Row="0" Grid.Column="0" Text="{Binding ClientName}" HorizontalOptions="Start" FontFamily="Arial" />
-                      <Label Grid.Row="0" Grid.Column="2" Text="{Binding StartDate, StringFormat='{}{0:yyyy-MM-dd  -  dddd}'}" HorizontalOptions="End" FontFamily="Arial" />
+                          <Label Grid.Row="1" Grid.Column="0" Text="{Binding ContractName}" HorizontalOptions="Start" FontFamily="Arial" TextColor="#ffdab3" />
+                          <Label Grid.Row="1" Grid.Column="2" Text="{Binding EndDate, StringFormat='{}{0:yyyy-MM-dd   dddd}'}" HorizontalOptions="End" FontFamily="Arial" TextColor="#ffdab3" />
 
-                      <Label Grid.Row="1" Grid.Column="0" Text="{Binding ContractName}" HorizontalOptions="Start" FontFamily="Arial" />
-                      <Label Grid.Row="1" Grid.Column="2" Text="{Binding EndDate, StringFormat='{}{0:yyyy-MM-dd  -  dddd}'}" HorizontalOptions="End" FontFamily="Arial" />
-
-                      <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Text="X" Clicked="DeleteField" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" TextColor="Black"  FontSize="15" />
-
-                      <!--TODO: Här ska vald employees projekt listas upp!-->
-
-                    </Grid>
-                  </ViewCell.View>
-                </ViewCell>
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>
-
-          <Button Grid.Row="5" Grid.Column="0" Grid.RowSpan="3" x:Name="TabbedPage" Text="To tabbed page" Clicked="TabbedPage_OnClicked" />
+                          <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Text="X" Clicked="DeleteField" TextColor="Black" BackgroundColor="#cce6ff" FontFamily="Arial" FontAttributes="Bold" FontSize="10" />
+                        </Grid>
+                      </StackLayout>
+                    </ViewCell.View>
+                  </ViewCell>
+                </DataTemplate>
+              </ListView.ItemTemplate>
+            </ListView>
+          </ScrollView>
+ 
+          <!--<Button Grid.Row="5" Grid.Column="0" Grid.RowSpan="3" x:Name="TabbedPage" Text="To tabbed page" Clicked="TabbedPage_OnClicked" />
           <Button Grid.Row="5" Grid.Column="1" Grid.RowSpan="3" x:Name="ProjectPage" Text="To project page from menu" Clicked="ProjectPage_OnClicked" />
-          <Button Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" x:Name="ProjectsEditPage" Text="To project edit page from menu" Clicked="ProjectsEditPage_OnClicked" />
+          <Button Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" x:Name="ProjectsEditPage" Text="To project edit page from menu" Clicked="ProjectsEditPage_OnClicked" />-->
         </Grid>
       </StackLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
   </ContentPage.Content>
 </ContentPage>

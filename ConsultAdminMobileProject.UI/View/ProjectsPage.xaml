@@ -8,13 +8,12 @@
       <ListView x:Name="ProjectsListViewItems" 
                 ItemsSource="{Binding EmployeeContractList}" 
                 ItemTapped="ProjectsListViewItems_OnItemTapped" 
-                HasUnevenRows="True" 
-                BackgroundColor="White">
+                HasUnevenRows="True">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
               <ViewCell.View>
-                <Grid RowSpacing="0.6" Padding="20" BackgroundColor="White">
+                <Grid RowSpacing="0.6" Padding="20">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
